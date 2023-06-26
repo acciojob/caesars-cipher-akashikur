@@ -33,6 +33,30 @@ const lookup = {
 
 function rot13(encodedStr) {
   let decodedArr = []; // Your Result goes here
+	const start = 'A'.charCodeAt();
+  const end = 'Z'.charCodeAt();
+
+  // Function to decode a single character
+  function decodeChar(char) {
+    // Get the character code
+    const charCode = char.charCodeAt();
+
+    // Check if the character is an uppercase letter
+    if (charCode >= start && charCode <= end) {
+      // Apply the ROT13 shift
+      let decodedCharCode = charCode - 13;
+
+      // Handle wraparound if the shift goes below 'A'
+      if (decodedCharCode < start) {
+        decodedCharCode = end - (start - decodedCharCode) + 1;
+      }
+
+      // Convert the character code back to a character
+      return String.fromCharCode(decodedCharCode);
+    }
+
+    // Return non-alphabetic characters as they are
+    return char;
   // Only change code below this line
 
   return; //return decodedArr
